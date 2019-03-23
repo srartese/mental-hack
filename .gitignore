@@ -19,7 +19,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-
-
-# Ignore local config
-/src/garuda.local.config.json

@@ -1,5 +1,6 @@
 <template>
 <div class="loggingQuestions">
+
     <!-- QUESTIONS AFTER ANSWER NO-->
     <form
         id="loggingNo"
@@ -106,10 +107,11 @@
 </template>
 
 <script>
-
 export default {
+
   name: 'LoggingQuestions',
-  components: { },
+  components: { 
+  },
   data() {
     return {
         eventexp: '',
@@ -134,8 +136,20 @@ export default {
         this.$store.state.partner = this.partner;
         this.$router.push(`/followup`);
     }
-  },
-  mounted() {
   }
 };
 </script>
+
+<style>
+/* play with some lines below */
+#progress-container-el {
+  /* background */
+  background-color: #f4f4f4 !important;
+}
+ 
+#progress-el {
+  /* progress bar */
+  background-color: red !important;
+  
+}
+</style>

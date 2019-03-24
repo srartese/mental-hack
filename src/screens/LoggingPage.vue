@@ -1,5 +1,6 @@
 <template>
   <div class="logging">
+      <VueScrollProgress></VueScrollProgress>
       <div class="questions" v-if="feelingNow === ''">
             <!-- FIRST QUESTION -->
             <p>
@@ -37,13 +38,15 @@
 
 <script>
 import loggingQuestions from '@/components/loggingQuestions';
+const VueScrollProgress = require('vue-scroll-progress').default
 
 
 export default {
   name: 'LoggingPage',
   components: {
-      loggingQuestions
-  },
+      loggingQuestions,
+      'VueScrollProgress': VueScrollProgress
+    },
   props: {
   },
   data() {

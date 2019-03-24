@@ -6,7 +6,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    version: `${name}@${version}`
+    version: `${name}@${version}`,
+    password: '',
+    email: '',
+    eventexp: '',
+    feel: '',
+    routine: '',
+    worried: '',
+    actionAddress: '',
+    control: '',
+    helpnow: '',
+    partner: ''
   },
   getters: {},
   mutations: {

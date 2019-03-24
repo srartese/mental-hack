@@ -1,25 +1,34 @@
-const fb = require('../firebaseConfig.js')
+import firebase from 'firebase';
 
-export default (id, question) => ({
-  id: id,
-  questions: []
-});
+const db = firebase.firestore();
 
-export default (id, user, quesion) => ({
-  id: id,
-  questions: []
-});
+// grabbing the questions
+db.collection('Question').get().then((snapshot) => {
+	snapshot.docs.forEach(doc => {
+		console.log(doc);
+	})
 
+})
 
-submitData(event) {
-        event.preventDefault();
-        firebase
-          .database()
-          .ref(`Newdata/${this.state.uid}`)
-          .set({
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-          })
-
-      }
-
+export default {
+    data() {
+        return {
+            post: {
+                content: ''
+            }
+        }
+    },
+    methods: {
+        createPost() {
+            db.answersCollection.add({
+                createdOn: new Date(),
+                content: this.answer.content,
+                userId: this.user.uid
+            }).then(ref => {
+                this.post.content = ''
+            }).catch(err => {
+                console.log(err)
+            })
+        }   
+    }
+}

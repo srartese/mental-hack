@@ -6,19 +6,6 @@
         action="https://vuejs.org/"
         method="post"
     >
-     <p v-if="nameError">
-          <b> {{ this.nameError }} </b>
-        </p>
-         <p>
-            <label for="name">First Name</label>
-            <input
-            id="fname"
-            v-model="fname"
-            type="text"
-            name="fname"
-            >
-        </p>
-
         <p v-if="emailError">
             <b> {{ this.emailError }} </b>
         </p>
@@ -32,7 +19,19 @@
             >
         </p>
 
-        <p>
+       <p v-if="passwordError">
+          <b> {{ this.passwordError }} </b>
+        </p>
+         <p>
+            <label for="password">Password</label>
+            <input
+            id="password"
+            v-model="password"
+            type="password"
+            name="password"
+            >
+        </p>
+  <p>
         <input
         type="submit"
         value="Login"
@@ -43,32 +42,48 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 
 export default {
   name: 'Login',
   components: { },
   data() {
     return {
-        fname: "",
-        nameError: '',
         email: "",
-        emailError: ""
+        emailError: '',
+        password: "",
+        passwordError: ''
     };
   },
   methods: {
-   checkForm() {
-      if (this.fname && this.email) {
-        this.$store.state.fname = this.fname;
+    login (e) {
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(this.email, this.password)
+            .then(
+            user => {
+                alert(`You are logged in as ${user.email}`);
+                this.$router.push(`/account`);
+            },
+            err => {
+                alert(err.message);
+            }
+            );
+        e.preventDefault();
+    },
+    checkForm() {
+      if (this.password && this.email) {
+        this.$store.state.password = this.password;
         this.$store.state.email = this.email;
-        this.$router.push(`/account`);
+        this.login();
         return true;
       }
 
-      if (!this.fname) {
-        this.nameError = 'Name required.';
+      if (!this.password) {
+        this.passwordError = 'Password required.';
       }
       else 
-        this.nameError = '';
+        this.passwordError = '';
 
 
       if (!this.email) {
@@ -76,44 +91,9 @@ export default {
     }
      else 
         this.emailError = '';
-
-      //e.preventDefault();
    }
   },
   mounted() {
-  }
-};
-</script>
-
-<style scoped>
-
-</style>
-
-<script>
-import firebase from 'firebase';
-export default {
-  name: 'login',
-  data: function() {
-    return {
-      email: '',
-      password: ''
-    };
-  },
-  methods: {
-    login: function(e) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          user => {
-            alert(`You are logged in as ${user.email}`);
-          },
-          err => {
-            alert(err.message);
-          }
-        );
-      e.preventDefault();
-    }
   }
 };
 </script>

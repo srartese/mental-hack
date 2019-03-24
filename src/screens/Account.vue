@@ -3,6 +3,14 @@
     <p>
       Welcome back {usr name}!
     </p>  
+
+    <button 
+        v-on:click="this.startLogging"
+    > 
+        Start Actions
+    </button>
+
+    <p> List of saved data</p>
   </div>
 </template>
 
@@ -13,6 +21,11 @@ export default {
   components: {
   },
   props: {
+  },
+    methods: {
+      startLogging() {
+        this.$router.push(`/logging`);
+      }
   },
   mounted (){
 /* eslint-disable no-console */

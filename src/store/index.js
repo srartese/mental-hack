@@ -8,7 +8,15 @@ export default new Vuex.Store({
   state: {
     version: `${name}@${version}`,
     password: '',
-    email: ''
+    email: '',
+    eventexp: '',
+    feel: '',
+    routine: '',
+    worried: '',
+    actionAddress: '',
+    control: '',
+    helpnow: '',
+    partner: ''
   },
   getters: {},
   mutations: {

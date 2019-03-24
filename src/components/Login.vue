@@ -3,7 +3,6 @@
     <form
         id="login"
         @submit.prevent="checkForm"
-        action="https://vuejs.org/"
         method="post"
     >
         <p v-if="emailError">

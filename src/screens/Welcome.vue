@@ -3,13 +3,19 @@
     <p>
       Welcome to the welcome pageee!
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      <login />
     </p>  
   </div>
 </template>
 
 <script>
+import login from '@/components/Login';
+
 export default {
-  name: 'HelloWorld',
+  name: 'Welcome',
+  components: {
+    login
+  },
   props: {
   }
 }
@@ -17,18 +23,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
